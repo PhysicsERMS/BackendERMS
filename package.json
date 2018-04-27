@@ -1,0 +1,33 @@
+{
+  "name": "koa2-gene",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "init_sql": "node ./init/index.js",
+    "start": "node ./app.js",
+    "dev": "./node_modules/.bin/nodemon bin/www",
+    "prd": "pm2 start ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "debug": "^2.6.3",
+    "jade": "~1.11.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^2.5.0",
+    "koa-json": "^1.1.3",
+    "koa-logger": "^1.3.1",
+    "koa-mysql-session": "^0.0.2",
+    "koa-onerror": "^1.3.1",
+    "koa-router": "^5.4.0",
+    "koa-session-minimal": "^3.0.4",
+    "koa-static": "^1.5.2",
+    "koa-views": "^3.1.0",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "nodemon": "^1.8.1"
+  }
+}
