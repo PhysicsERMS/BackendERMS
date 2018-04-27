@@ -14,7 +14,7 @@ const getSqlList = function () {
   let pathArr = basePath.split('\/');
   pathArr = pathArr.splice(0, pathArr.length - 1);
 
-  basePath = pathArr.join('\/') + '/sql/';
+  basePath = pathArr.join('\/') + '/qw/';
   return loopFile(basePath, 'sql');
 };
 

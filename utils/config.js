@@ -4,7 +4,7 @@ const config = {
 
   //数据库配置
   database: {
-    DATABASE: 'koa2sql',
+    DATABASE: 'erms',
     USERNAME: 'root',
     PASSWORD: 'Wang1995',
     PORT: '3306',

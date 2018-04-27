@@ -1,16 +1,15 @@
-const router = require('koa-router')();
+const Router = require('koa-router');
+const router = new Router();
 
-router.prefix('/teacher');
-
-router.get('/getStudents', function *(ctx, next) {
-	 this.body = [
+router.get('/getStudents',  async (ctx, next) => {
+	 ctx.body = [
 		{
-			id: 1,
-			name: 'q'
+			id: 3,
+			name: 'a'
 		},
 		{
-			id: 2,
-			name: 'w'
+			id: 22,
+			name: 'qw'
 		}
 	];
 })

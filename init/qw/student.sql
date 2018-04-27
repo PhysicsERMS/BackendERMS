@@ -3,7 +3,7 @@
  * @Date: 2018-04-26 15:32:22
 */
 
-CREATE TABLE   IF NOT EXISTS  `edps_student` (
+CREATE TABLE   IF NOT EXISTS  `erms_student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` int(11) NOT NULL,
   `password` varchar(255) DEFAULT NULL,

@@ -1,16 +1,16 @@
 /*
  * @Author: Maiduo
- * @Date: 2018-04-26 15:40:29
+ * @Date: 2018-04-26 15:31:46
 */
-CREATE TABLE   IF NOT EXISTS  `edps_admin` (
+CREATE TABLE   IF NOT EXISTS  `erms_teacher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `nick` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `office` varchar(255) DEFAULT NULL,
   `create_time` varchar(20) DEFAULT NULL,
   `modified_time` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `edps_admin` set name='admin', email='admin@admin.me', password='admin', phone='18560684220';
