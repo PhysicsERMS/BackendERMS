@@ -23,9 +23,9 @@ const query = (sql, value) => {
         }
         resolve(rows);
         connection.release();
-      })
-    })
-  })
+      });
+    });
+  });
 };
 
 module.exports = { query };

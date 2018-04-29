@@ -7,30 +7,30 @@
 /* ---------------创建admin表---------------------------- */
 CREATE TABLE   IF NOT EXISTS  `erms_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `create_time` varchar(20) DEFAULT NULL,
-  `modified_time` varchar(20) DEFAULT NULL,
+  `name` varchar(255) DEFAULT "",
+  `password` varchar(255) DEFAULT "",
+  `phone` varchar(255) DEFAULT "",
+  `email` varchar(255) DEFAULT "",
+  `create_time` varchar(20) DEFAULT "",
+  `modified_time` varchar(20) DEFAULT "",
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `erms_admin` set name='admin', email='admin@admin.me', password='admin', phone='18560684220';
+INSERT INTO `erms_admin` set name='admin', email='admin@admin.me', password='admin', phone='18560684220', create_time=now();
 
 
 /*  ---------------------创建学生表--------------------------------- */
 CREATE TABLE   IF NOT EXISTS  `erms_student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` int(11) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `college` varchar(255) DEFAULT NULL,
-  `class` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `create_time` varchar(20) DEFAULT NULL,
-  `modified_time` varchar(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT "",
+  `name` varchar(255) DEFAULT "",
+  `college` varchar(255) DEFAULT "",
+  `class` varchar(255) DEFAULT "",
+  `phone` varchar(255) DEFAULT "",
+  `email` varchar(255) DEFAULT "",
+  `create_time` varchar(20) DEFAULT "",
+  `modified_time` varchar(20) DEFAULT "",
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,25 +39,25 @@ CREATE TABLE   IF NOT EXISTS  `erms_student` (
 /* ---------------------------创建教师表--------------------------------------- */
 CREATE TABLE   IF NOT EXISTS  `erms_teacher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `nick` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `office` varchar(255) DEFAULT NULL,
-  `create_time` varchar(20) DEFAULT NULL,
-  `modified_time` varchar(20) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT "",
+  `nick` varchar(255) DEFAULT "",
+  `phone` varchar(255) DEFAULT "",
+  `email` varchar(255) DEFAULT "",
+  `office` varchar(255) DEFAULT "",
+  `create_time` varchar(20) DEFAULT "",
+  `modified_time` varchar(20) DEFAULT "",
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* ----------------------------创建实验表----------------------------- */
+/* ----------------------------创建实验表--------------------- */
 CREATE TABLE   IF NOT EXISTS  `erms_experiment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `teacher_id` int(11) DEFAULT NULL,
-  `room` varchar(255) DEFAULT NULL,
-  `create_time` varchar(20) DEFAULT NULL,
-  `modified_time` varchar(20) DEFAULT NULL,
+  `name` varchar(255) DEFAULT "",
+  `teacher_id` int(11) NOT NULL,
+  `room` varchar(255) DEFAULT "",
+  `create_time` varchar(20) DEFAULT "",
+  `modified_time` varchar(20) DEFAULT "",
   PRIMARY KEY (`id`),
   FOREIGN KEY (`teacher_id`) REFERENCES `erms_teacher` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -66,11 +66,11 @@ CREATE TABLE   IF NOT EXISTS  `erms_experiment` (
 /* ---------------------------创建通知表--------------------------------- */
 CREATE TABLE IF NOT EXISTS `erms_notice`(
 `id` int(11) NOT NULL AUTO_INCREMENT,
-`title` VARCHAR(255) DEFAULT NULL,
-`content` LONGTEXT DEFAULT NULL,
-`teacher_id` int(11) DEFAULT NULL,
-`create_time` VARCHAR(255) DEFAULT NULL,
-`modified_time` VARCHAR(255) DEFAULT NULL,
+`title` VARCHAR(255) DEFAULT "",
+`content` LONGTEXT DEFAULT "",
+`teacher_id` int(11) NOT NULL,
+`create_time` VARCHAR(255) DEFAULT "",
+`modified_time` VARCHAR(255) DEFAULT "",
 PRIMARY KEY(`id`),
 FOREIGN KEY (`teacher_id`) REFERENCES `erms_teacher` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -78,15 +78,15 @@ FOREIGN KEY (`teacher_id`) REFERENCES `erms_teacher` (`id`)
 /* ------------------------创建预约实验表------------------------------- */
 CREATE TABLE   IF NOT EXISTS  `erms_subscribe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `experiment_id` int(11) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `class_time` varchar(255) DEFAULT NULL,
-  `pre_status` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `download_url` varchar(255) DEFAULT NULL,
-  `view_url` varchar(255) DEFAULT NULL,
-  `create_time` varchar(20) DEFAULT NULL,
-  `modified_time` varchar(20) DEFAULT NULL,
+  `experiment_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `class_time` varchar(255) DEFAULT "",
+  `pre_status` varchar(255) DEFAULT "",
+  `status` varchar(255) DEFAULT "",
+  `download_url` varchar(255) DEFAULT "",
+  `view_url` varchar(255) DEFAULT "",
+  `create_time` varchar(20) DEFAULT "",
+  `modified_time` varchar(20) DEFAULT "",
   PRIMARY KEY (`id`),
   FOREIGN KEY (`experiment_id`) REFERENCES `erms_experiment` (`id`),
   FOREIGN KEY (`student_id`) REFERENCES `erms_student` (`id`)

@@ -15,7 +15,7 @@ const sqlContentMap = {};
  * @return {string}           文件内容
  */
 const getSqlContent = (fileName, path) => {
-  const content = fs.readFileSync(path, 'binary') // 以二进制方式读取
+  const content = fs.readFileSync(path, 'binary'); // 以二进制方式读取
   sqlContentMap[fileName] = content;
 };
 

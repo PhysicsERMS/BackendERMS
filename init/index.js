@@ -1,14 +1,13 @@
-const fs = require('fs');
 const getSqlContentMap = require('./utils/getSqlContentMap');
 const { query } = require('./utils/db');
 
 //打印脚本执行日志
 const eventLog = (err, sqlFile, index ) => {
   if (err) {
-    console.log(`[ERROR] sql脚本文件: ${sqlFile} 第${index + 1}条脚本执行失败o(╯□╰)o ！`);
+    console.log(`[ERROR] ${sqlFile} 第${index + 1}条脚本执行失败o(╯□╰)o ！`);
     return false;
   }
-  console.log(`[SUCCESS] sql脚本文件: ${sqlFile} 第${index + 1}条脚本执行成功O(∩_∩)O !`)
+  console.log(`[SUCCESS] ${sqlFile} 第${index + 1}条脚本执行成功O(∩_∩)O !`);
 };
 
 //获取所有sql脚本内容
@@ -31,8 +30,8 @@ const createAllTables = async () => {
       }
     }
   }
-  console.log('sql脚本执行结束！')
-  console.log('请按 ctrl + c 键退出！')
+  console.log('sql脚本执行结束！');
+  console.log('请按 ctrl + c 键退出！');
 };
 
 createAllTables();

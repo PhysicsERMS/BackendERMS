@@ -2,8 +2,8 @@
  * @Author: Maiduo
  * @Date: 2018-04-27 20:26:52
 */
-const mysql = require("mysql");
-const config = require("./config");
+const mysql = require('mysql');
+const config = require('./config');
 
 const database = config.database;
 
@@ -30,54 +30,54 @@ const query = ( sql, values ) => {
             resolve( rows );
           }
           connection.release();
-        })
+        });
       }
-    })
-  })
-}
+    });
+  });
+};
 
 const createTable = ( sql ) => {
-  return query( sql, [] )
-}
+  return query( sql, [] );
+};
 
-const findDataById = ( table,  id ) => {
-  let  _sql =  "SELECT * FROM ?? WHERE id = ? ";
+const findDataById = ( table,  id, start, end ) => {
+  let  _sql =  'SELECT * FROM ?? WHERE id = ? ';
   return query( _sql, [ table, id, start, end ] );
-}
+};
 
 const findDataByPage = ( table, keys, start, end ) => {
-  let  _sql =  "SELECT ?? FROM ??  LIMIT ? , ?";
+  let  _sql =  'SELECT ?? FROM ??  LIMIT ? , ?';
   return query( _sql, [keys,  table,  start, end ] );
-}
+};
 
 
 const insertData = ( table, values ) => {
-  let _sql = "INSERT INTO ?? SET ?";
+  let _sql = 'INSERT INTO ?? SET ?';
   return query( _sql, [ table, values ] );
-}
+};
 
 
 const updateData = ( table, values, id ) => {
-  let _sql = "UPDATE ?? SET ? WHERE id = ?";
+  let _sql = 'UPDATE ?? SET ? WHERE id = ?';
   return query( _sql, [ table, values, id ] );
-}
+};
 
 
 const deleteDataById = ( table, id ) => {
-  let _sql = "DELETE FROM ?? WHERE id = ?";
+  let _sql = 'DELETE FROM ?? WHERE id = ?';
   return query( _sql, [ table, id ] );
-}
+};
 
 
-const select = ( table, keys ) => {
-  let  _sql =  "SELECT ?? FROM ?? ";
-  return query( _sql, [ keys, table ] );
-}
+const select = ( table, start, end ) => {
+  let  _sql =  'SELECT * FROM ?? LIMIT ? , ?';
+  return query( _sql, [ table, start, end ] );
+};
 
 const count = ( table ) => {
-  let  _sql =  "SELECT COUNT(*) AS total_count FROM ?? ";
+  let  _sql =  'SELECT COUNT(*) AS total_count FROM ?? ';
   return query( _sql, [ table ] );
-}
+};
 
 module.exports = {
   query,
@@ -89,4 +89,4 @@ module.exports = {
   updateData,
   select,
   count,
-}
+};

@@ -7,9 +7,9 @@ const user = {
    * @param  {object} model 用户数据模型
    * @return {object}       mysql执行结果
    */
-  async create ( model ) {
-    let result = await dbUtils.insertData( 'user_info', model )
-    return result
+  async create( model ) {
+    let result = await dbUtils.insertData( 'erms_admin', model );
+    return result;
   },
 
   /**
@@ -21,14 +21,14 @@ const user = {
     let _sql = `
     SELECT * from user_info
       where email="${options.email}" or name="${options.name}"
-      limit 1`
-    let result = await dbUtils.query( _sql )
+      limit 1`;
+    let result = await dbUtils.query( _sql );
     if ( Array.isArray(result) && result.length > 0 ) {
-      result = result[0]
+      result = result[0];
     } else {
-      result = null
+      result = null;
     }
-    return result
+    return result;
   },
 
   /**
@@ -40,14 +40,14 @@ const user = {
     let _sql = `
     SELECT * from erms_admin
       where password="${options.password}" and name="${options.name}"
-      limit 1`
-    let result = await dbUtils.query( _sql )
+      limit 1`;
+    let result = await dbUtils.query( _sql );
     if ( Array.isArray(result) && result.length > 0 ) {
-      result = result[0]
+      result = result[0];
     } else {
-      result = null
+      result = null;
     }
-    return result
+    return result;
   },
 
   /**
@@ -59,18 +59,18 @@ const user = {
 
     let result = await dbUtils.select(
       'user_info',
-      ['id', 'email', 'name', 'detail_info', 'create_time', 'modified_time', 'modified_time' ])
+      ['id', 'email', 'name', 'detail_info', 'create_time', 'modified_time', 'modified_time' ], userName);
     if ( Array.isArray(result) && result.length > 0 ) {
-      result = result[0]
+      result = result[0];
     } else {
-      result = null
+      result = null;
     }
-    return result
+    return result;
   },
 
 
 
-}
+};
 
 
-module.exports = user
+module.exports = user;
