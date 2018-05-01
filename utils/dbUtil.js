@@ -52,8 +52,11 @@ const findDataByPage = ( table, keys, start, end ) => {
 
 
 const insertData = ( table, values ) => {
+
   let _sql = 'INSERT INTO ?? SET ?';
-  return query( _sql, [ table, values ] );
+  values.map(item => {
+    return query( _sql, [ table, item ] );
+  });
 };
 
 

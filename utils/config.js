@@ -1,4 +1,5 @@
 const config = {
+  prefix: 'mock',
   //启动端口
   port: 3001,
 

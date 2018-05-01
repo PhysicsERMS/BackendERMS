@@ -4,7 +4,8 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const session = require('koa-session-minimal');
 const MysqlStore = require('koa-mysql-session');
-const bodyParse = require('koa-bodyparser');
+const koaBody = require('koa-body');
+const convert = require('koa-convert');
 
 const config = require('./utils/config');
 const routers = require('./routes/index');
@@ -26,7 +27,7 @@ let cookie = {
   secure: '',
   sameSite: '',
   signed: '',
-}
+};
 
 // session存储配置
 const sessionMysqlConfig = {
@@ -44,20 +45,17 @@ app.use(session({
   cookie: cookie
 }));
 
+app.use(convert(koaBody()));
 
-app.use(bodyParse());
 app.use(json());
 app.use(logger());
-// app.use(async (ctx) => {
-//   ctx.body = routers;
-// })
 
 // 初始化路由中间件
-app.use(routers.routes()).use(routers.allowedMethods())
+app.use(routers.routes()).use(routers.allowedMethods());
 
 
 // 监听启动端口
-app.listen( config.port )
-console.log(`the server is start at port ${config.port}`)
+app.listen( config.port );
+console.log(`the server is start at port ${config.port}`);
 
 

@@ -64,7 +64,7 @@ module.exports = {
   },
 
   /**
-   * 获取实验列表
+   * 获取老师列表
    * @param   {obejct} ctx 上下文对象
    */
   async getTeachers ( ctx ) {
@@ -83,7 +83,76 @@ module.exports = {
       result.msg = MSG.ERROR_SYS;
     }
     ctx.body = result;
+  },
+
+  /**
+   * 获取学生列表
+   * @param   {obejct} ctx 上下文对象
+   */
+  async getStudents ( ctx ) {
+    let formData = ctx.request.body;
+    console.log(formData);
+    const result = {
+      msg: '',
+      data: {},
+      code: 0,
+      page: {
+        pagenum: formData.page.pageno,
+        pageSize: formData.page.rowcount,
+        orderby: {},
+        total: 346
+      }
+    };
+    const Result = await adminService.getStudents( formData );
+    if ( Result ) {
+      result.msg = MSG.SUCCESS;
+      result.code = 200;
+      result.data.list = Result;
+    } else {
+      result.msg = MSG.ERROR_SYS;
+    }
+    ctx.body = result;
+  },
+
+  /**
+   * 从预约系统导入所有学生
+   * @param   {obejct} ctx 上下文对象
+   */
+  async getAllStudents( ctx ) {
+    const result = {
+      msg: '',
+      code: 0
+    };
+    const Result = await adminService.getAllStudents();
+    if ( Result ) {
+      result.msg = MSG.SUCCESS;
+      result.code = 200;
+    } else {
+      result.msg = MSG.ERROR_SYS;
+    }
+    ctx.body = result;
+  },
+
+  /**
+   * 从预约系统导入所有教师
+   * @param   {obejct} ctx 上下文对象
+   */
+  async getAllTeachers( ctx ) {
+    const result = {
+      msg: '',
+      code: 0
+    };
+    const Result = await adminService.getAllTeachers();
+    if ( Result ) {
+      result.msg = MSG.SUCCESS;
+      result.code = 200;
+    } else {
+      result.msg = MSG.ERROR_SYS;
+    }
+    ctx.body = result;
   }
+
+
 
   /**
    * 注册操作
