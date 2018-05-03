@@ -5,7 +5,8 @@ const onerror = require('koa-onerror');
 const session = require('koa-session-minimal');
 const MysqlStore = require('koa-mysql-session');
 const koaBody = require('koa-body');
-const convert = require('koa-convert');
+const server = require('koa-static');
+const cors = require('koa2-cors');
 
 const config = require('./utils/config');
 const routers = require('./routes/index');
@@ -45,14 +46,21 @@ app.use(session({
   cookie: cookie
 }));
 
-app.use(convert(koaBody()));
-
+app.use(koaBody({ multipart: true }));
 app.use(json());
 app.use(logger());
+app.use(cors());
+app.use(server(__dirname + '/public/uploads/'));
 
 // 初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods());
 
+// 404页面
+// app.use(async function(ctx, next) {
+//   await next();
+//   if (ctx.body || !ctx.idempotent) return;
+//   ctx.redirect('/404.html');
+// });
 
 // 监听启动端口
 app.listen( config.port );

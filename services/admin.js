@@ -6,6 +6,7 @@ const adminModel = require('../models/admin');
 const experimentModel = require('../models/experiment');
 const teacherModel = require('../models/teacher');
 const studentModel = require('../models/student');
+const subcribeModel = require('../models/subscribe');
 
 const admin = {
   /**
@@ -67,7 +68,19 @@ const admin = {
    * @return boolearn          操作是否成功
    */
   async getAllStudents() {
-    let resultData = await studentModel.getAllStudents();
+    let resultData = await studentModel.getAllStudents().then(async () => {
+      let resultData2 = await subcribeModel.getAllSubscripions();
+      return resultData2;
+    });
+    return resultData;
+  },
+
+  /**
+   * 从预约系统导入所有预约实验
+   * @return boolearn          操作是否成功
+   */
+  async getAllSubscripions() {
+    let resultData = await subcribeModel.getAllSubscripions();
     return resultData;
   },
 
@@ -79,6 +92,17 @@ const admin = {
     let resultData = await teacherModel.getAllTeachers();
     return resultData;
   },
+
+  /**
+   * 从预约系统导入所有实验
+   * @return boolearn          操作是否成功
+   */
+  async getAllExperiments() {
+    let resultData = await experimentModel.getAllExperiments();
+    return resultData;
+  },
 };
+
+
 
 module.exports = admin;

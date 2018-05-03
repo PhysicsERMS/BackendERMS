@@ -1,6 +1,5 @@
 const dbUtils = require('../utils/dbUtil');
-const allStudents = require('../mock/allStudents').list;
-
+const allStudents = require('../mock/allStudents').students;
 const student = {
   /**
    * 数据库获取所有学生列表

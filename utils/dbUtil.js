@@ -72,9 +72,9 @@ const deleteDataById = ( table, id ) => {
 };
 
 
-const select = ( table, start, end ) => {
-  let  _sql =  'SELECT * FROM ?? LIMIT ? , ?';
-  return query( _sql, [ table, start, end ] );
+const select = ( table, id, start, end ) => {
+  let  _sql =  'SELECT * FROM ?? WHERE id = ? LIMIT ? , ?';
+  return query( _sql, [ table, id, start, end ] );
 };
 
 const count = ( table ) => {

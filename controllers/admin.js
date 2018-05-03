@@ -50,13 +50,20 @@ module.exports = {
     const result = {
       msg: '',
       data: {},
-      code: 0
+      code: 0,
+      page: {
+        pagenum: formData.page.pageno,
+        pageSize: formData.page.rowcount,
+        orderby: {},
+        total: 0
+      }
     };
     const Result = await adminService.getExperiments( formData );
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
       result.data = Result;
+      result.page.total = Result.lenth;
     } else {
       result.msg = MSG.ERROR_SYS;
     }
@@ -72,13 +79,20 @@ module.exports = {
     const result = {
       msg: '',
       data: {},
-      code: 0
+      code: 0,
+      page: {
+        pagenum: formData.page.pageno,
+        pageSize: formData.page.rowcount,
+        orderby: {},
+        total: 0
+      }
     };
     const Result = await adminService.getTeachers( formData );
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
       result.data = Result;
+      result.page.total = Result.lenth;
     } else {
       result.msg = MSG.ERROR_SYS;
     }
@@ -100,14 +114,15 @@ module.exports = {
         pagenum: formData.page.pageno,
         pageSize: formData.page.rowcount,
         orderby: {},
-        total: 346
+        total: 0
       }
     };
     const Result = await adminService.getStudents( formData );
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
-      result.data.list = Result;
+      result.data = Result;
+      result.page.total = Result.lenth;
     } else {
       result.msg = MSG.ERROR_SYS;
     }
@@ -150,10 +165,27 @@ module.exports = {
       result.msg = MSG.ERROR_SYS;
     }
     ctx.body = result;
+  },
+
+  /**
+   * 从预约系统导入所有实验
+   * @param   {obejct} ctx 上下文对象
+   */
+  async getAllExperiments( ctx ) {
+    const result = {
+      msg: '',
+      code: 0
+    };
+    const Result = await adminService.getAllExperiments();
+    if ( Result ) {
+      result.msg = MSG.SUCCESS;
+      result.code = 200;
+    } else {
+      result.msg = MSG.ERROR_SYS;
+    }
+    ctx.body = result;
   }
-
-
-
+  
   /**
    * 注册操作
    * @param   {obejct} ctx 上下文对象
