@@ -13,7 +13,8 @@ const storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage });
-router.post('/upload', upload.single('avatar'), uploadController.moveFiles);
+router.post('/upload', upload.single('avatar'), uploadController.copyFiles);//上传文件
+router.post('/upload/save', uploadController.saveFiles); //保存文件URL导数据库
 router.get('/uploads/:name', uploadController.getFile);
 
 module.exports = router;

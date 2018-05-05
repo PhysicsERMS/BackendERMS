@@ -52,8 +52,8 @@ module.exports = {
       data: {},
       code: 0,
       page: {
-        pagenum: formData.page.pageno,
-        pageSize: formData.page.rowcount,
+        current: formData.page.current,
+        pageSize: formData.page.pageSize,
         orderby: {},
         total: 0
       }
@@ -62,8 +62,8 @@ module.exports = {
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
-      result.data = Result;
-      result.page.total = Result.lenth;
+      result.data = Result.data;
+      result.page.total = Result.total;
     } else {
       result.msg = MSG.ERROR_SYS;
     }
@@ -81,8 +81,8 @@ module.exports = {
       data: {},
       code: 0,
       page: {
-        pagenum: formData.page.pageno,
-        pageSize: formData.page.rowcount,
+        current: formData.page.current,
+        pageSize: formData.page.pageSize,
         orderby: {},
         total: 0
       }
@@ -91,8 +91,8 @@ module.exports = {
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
-      result.data = Result;
-      result.page.total = Result.lenth;
+      result.data = Result.data;
+      result.page.total = Result.total;
     } else {
       result.msg = MSG.ERROR_SYS;
     }
@@ -105,14 +105,13 @@ module.exports = {
    */
   async getStudents ( ctx ) {
     let formData = ctx.request.body;
-    console.log(formData);
     const result = {
       msg: '',
       data: {},
       code: 0,
       page: {
-        pagenum: formData.page.pageno,
-        pageSize: formData.page.rowcount,
+        current: formData.page.current,
+        pageSize: formData.page.pageSize,
         orderby: {},
         total: 0
       }
@@ -121,8 +120,8 @@ module.exports = {
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
-      result.data = Result;
-      result.page.total = Result.lenth;
+      result.data = Result.data;
+      result.page.total = Result.total;
     } else {
       result.msg = MSG.ERROR_SYS;
     }

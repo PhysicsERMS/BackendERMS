@@ -91,6 +91,6 @@ CREATE TABLE   IF NOT EXISTS  `erms_subscribe` (
   `create_time` varchar(20) DEFAULT "",
   `modified_time` varchar(20) DEFAULT "",
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`experiment_id`) REFERENCES `erms_experiment` (`id`) ON UPDATE CASCADE,
-  FOREIGN KEY (`student_id`) REFERENCES `erms_student` (`id`) ON UPDATE CASCADE
+  FOREIGN KEY (`student_id`) REFERENCES `erms_student` (`id`) ON UPDATE CASCADE,
+  FOREIGN KEY (`experiment_id`) REFERENCES `erms_experiment` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

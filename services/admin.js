@@ -26,12 +26,12 @@ const admin = {
    * @return {object}          所有实验列表
    */
   async getExperiments( formData ) {
-    const pageno = parseInt(formData.pageno );
-    const rowcount = parseInt(formData.rowcount);
+    const current = parseInt(formData.page.current );
+    const pageSize = parseInt(formData.page.pageSize);
+    const start = current * pageSize - pageSize;
+    const rowNum = pageSize;
 
-    const start = pageno * rowcount - rowcount;
-    const end = pageno * rowcount - 1;
-    let resultData = await experimentModel.getExperiments( start, end );
+    let resultData = await experimentModel.getExperiments( start, rowNum );
     return resultData;
   },
 
@@ -41,12 +41,12 @@ const admin = {
    * @return {object}          所有教师列表
    */
   async getTeachers( formData ) {
-    const pageno = parseInt(formData.page.pageno );
-    const rowcount = parseInt(formData.page.rowcount);
-
-    const start = pageno * rowcount - rowcount;
-    const end = pageno * rowcount - 1;
-    let resultData = await teacherModel.getTeachers( start, end );
+    const current = parseInt(formData.page.current );
+    const pageSize = parseInt(formData.page.pageSize);
+    const start = current * pageSize - pageSize;
+    const rowNum = pageSize;
+    
+    let resultData = await teacherModel.getTeachers( start,rowNum );
     return resultData;
   },
 
@@ -55,12 +55,11 @@ const admin = {
    * @return {object}          所有学生列表
    */
   async getStudents( formData ) {
-    const pageno = parseInt(formData.page.pageno );
-    const rowcount = parseInt(formData.page.rowcount);
-
-    const start = pageno * rowcount - rowcount;
-    const end = pageno * rowcount - 1;
-    let resultData = await studentModel.getStudents( start, end );
+    const current = parseInt(formData.page.current );
+    const pageSize = parseInt(formData.page.pageSize);
+    const start = current * pageSize - pageSize;
+    const rowNum = pageSize;
+    let resultData = await studentModel.getStudents( start, rowNum );
     return resultData;
   },
   /**

@@ -54,15 +54,19 @@ const findDataByPage = ( table, keys, start, end ) => {
 const insertData = ( table, values ) => {
 
   let _sql = 'INSERT INTO ?? SET ?';
-  values.map(item => {
-    return query( _sql, [ table, item ] );
-  });
+  if (Array.isArray(values)) {
+    values.map(item => {
+      return query( _sql, [ table, item ] );
+    });
+  } else {
+    return query( _sql, [ table, values ] );
+  }
 };
 
 
-const updateData = ( table, values, id ) => {
-  let _sql = 'UPDATE ?? SET ? WHERE id = ?';
-  return query( _sql, [ table, values, id ] );
+const updateData = ( table, field, values, id ) => {
+  let _sql = "UPDATE ?? SET ? = ? WHERE id = ?";
+  return query( _sql, [ table, field, values, id ] );
 };
 
 

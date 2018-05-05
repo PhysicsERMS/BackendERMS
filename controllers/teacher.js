@@ -1,8 +1,8 @@
 /*
  * @Author: Maiduo
- * @Date: 2018-04-27 19:29:43
+ * @Date: 2018-05-05 16:49:38
 */
-const studentService = require('../services/student');
+const teacherService = require('../services/teacher');
 const MSG = require('../utils/message');
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
       code: 0
     };
 
-    const userResult = await studentService.signIn( formData );
+    const userResult = await teacherService.signIn( formData );
     if ( userResult ) {
       if ( formData.name === userResult.name ) {
         result.msg = MSG.SUCCESS;
@@ -58,7 +58,7 @@ module.exports = {
         total: 0
       }
     };
-    const Result = await studentService.getMyExp( formData );
+    const Result = await teacherService.getMyExp( formData );
     if ( Result ) {
       result.msg = MSG.SUCCESS;
       result.code = 200;
@@ -69,4 +69,29 @@ module.exports = {
     }
     ctx.body = result;
   },
+  async getStudentsByEId ( ctx ) {
+    let formData = ctx.request.body;
+    const result = {
+      msg: '',
+      data: {},
+      code: 0,
+      page: {
+        current: formData.page.current,
+        pageSize: formData.page.pageSize,
+        orderby: {},
+        total: 0
+      }
+    };
+    const Result = await teacherService.getStudentsByEId( formData );
+    if ( Result ) {
+      result.msg = MSG.SUCCESS;
+      result.code = 200;
+      result.data = Result.data;
+      result.page.total = Result.total;
+    } else {
+      result.msg = MSG.ERROR_SYS;
+    }
+    ctx.body = result;
+  },
+  
 };

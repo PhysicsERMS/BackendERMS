@@ -6,10 +6,15 @@ const teacher = {
    * 数据库获取所有教师列表
    * @return {object}       mysql执行结果
    */
-  async getTeachers ( start, end ) {
-   
-    const result = await dbUtils.select( 'teacher', start, end  );
-    return result;
+  async getTeachers ( start, rowNum ) {
+    let _sql1 = `SELECT * FROM teacher LIMIT ${start} , ${rowNum}`;
+    let _sql2 = `SELECT * FROM teacher`;
+    const data = await dbUtils.query( _sql1  );
+    const datalTotal = await dbUtils.query( _sql2  );
+    return {
+      data, 
+      total:datalTotal.length 
+    };
   },
 
   /**

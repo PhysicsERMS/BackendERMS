@@ -50,7 +50,7 @@ app.use(koaBody({ multipart: true }));
 app.use(json());
 app.use(logger());
 app.use(cors());
-app.use(server(__dirname + '/public/uploads/'));
+app.use(server(__dirname + '/public/uploads/', { extensions: ['pdf']}));
 
 // 初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods());

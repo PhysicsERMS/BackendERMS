@@ -1,17 +1,9 @@
 const Router = require('koa-router');
+const teacher = require('../controllers/teacher');
 const router = new Router();
 
-router.get('/getStudents',  async (ctx) => {
-  ctx.body = [
-    {
-      id: 3,
-      name: 'a'
-    },
-    {
-      id: 22,
-      name: 'qw'
-    }
-  ];
-});
+
+router.post('/getExperiments',teacher.getMyExp );
+router.post('/getStudentsByEId',teacher.getStudentsByEId );
 
 module.exports = router;

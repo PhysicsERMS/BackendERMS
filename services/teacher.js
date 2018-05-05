@@ -1,7 +1,8 @@
 /*
  * @Author: Maiduo
- * @Date: 2018-04-27 20:04:21
+ * @Date: 2018-05-05 16:53:18
 */
+
 const adminModel = require('../models/admin');
 const experimentModel = require('../models/experiment');
 const studentModel = require('../models/student');
@@ -23,21 +24,37 @@ const student = {
   },
 
   /**
-   * 获取学生实验列表
-   * @return {object}          学生实验列表
+   * 获取老师实验列表
+   * @return {object}          老师实验列表
    */
   async getMyExp( formData ) {
+    console.log(formData);
     const current = parseInt(formData.page.current );
     const pageSize = parseInt(formData.page.pageSize);
-    
     const id = parseInt(formData.id);
 
     const start = current * pageSize - pageSize;
     const rowNum = pageSize;
 
-    let resultData = await experimentModel.getStuExp( id, start, rowNum );
+    let resultData = await experimentModel.getTeaExp( id, start, rowNum );
     return resultData;
   },
+
+
+  async getStudentsByEId( formData ) {
+    console.log(formData);
+    const current = parseInt(formData.page.current );
+    const pageSize = parseInt(formData.page.pageSize);
+    const id = parseInt(formData.id);
+
+    const start = current * pageSize - pageSize;
+    const rowNum = pageSize;
+
+    let resultData = await studentModel.getStudentsByEId( id, start, rowNum );
+    return resultData;
+  },
+
+
 
   async saveFiles (formData) {
     const filePath = formData.filePath;
