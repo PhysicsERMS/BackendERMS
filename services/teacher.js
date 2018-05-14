@@ -3,10 +3,9 @@
  * @Date: 2018-05-05 16:53:18
 */
 
-const adminModel = require('../models/admin');
 const experimentModel = require('../models/experiment');
 const studentModel = require('../models/student');
-// const teacherModel = require('../models/teacher');
+const teacherModel = require('../models/teacher');
 // const studentModel = require('../models/student');
 // const subcribeModel = require('../models/subscribe');
 
@@ -17,9 +16,9 @@ const student = {
    * @return {object}          登录业务操作结果
    */
   async signIn( formData ) {
-    let resultData = await adminModel.getOneByUserNameAndPassword({
+    let resultData = await teacherModel.getOneByUserNameAndPassword({
       'password': formData.password,
-      'name': formData.name});
+      'nick': formData.name});
     return resultData;
   },
 
@@ -56,10 +55,13 @@ const student = {
 
 
 
-  async saveFiles (formData) {
+  async saveFileAndScore (formData) {
     const filePath = formData.filePath;
     const id = parseInt(formData.id);
-    let resultData = await studentModel.saveFiles(filePath, id);
+    const preScore = parseInt(formData.preScore);
+    const score = parseInt(formData.score);
+    const operateScore = parseInt(formData.operateScore);
+    let resultData = await teacherModel.saveFileAndScore(filePath, id, preScore, score, operateScore);
     return resultData;
   }
 };

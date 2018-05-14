@@ -46,11 +46,19 @@ app.use(session({
   cookie: cookie
 }));
 
+// app.use(async (ctx) => {
+//   if (!ctx.session.isLogin) {
+//     ctx.body = {
+//       code: 10233,
+//       MSG: '',
+//     };
+//   }
+// });
 app.use(koaBody({ multipart: true }));
 app.use(json());
 app.use(logger());
 app.use(cors());
-app.use(server(__dirname + '/public/uploads/', { extensions: ['pdf']}));
+app.use(server(__dirname + '/public/', { extensions: ['pdf']}));
 
 // 初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods());

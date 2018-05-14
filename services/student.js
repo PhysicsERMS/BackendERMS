@@ -2,7 +2,6 @@
  * @Author: Maiduo
  * @Date: 2018-04-27 20:04:21
 */
-const adminModel = require('../models/admin');
 const experimentModel = require('../models/experiment');
 const studentModel = require('../models/student');
 // const teacherModel = require('../models/teacher');
@@ -16,9 +15,9 @@ const student = {
    * @return {object}          登录业务操作结果
    */
   async signIn( formData ) {
-    let resultData = await adminModel.getOneByUserNameAndPassword({
+    let resultData = await studentModel.getOneByUserNameAndPassword({
       'password': formData.password,
-      'name': formData.name});
+      'number': formData.name});
     return resultData;
   },
 
@@ -41,7 +40,7 @@ const student = {
 
   async saveFiles (formData) {
     const filePath = formData.filePath;
-    const id = parseInt(formData.id);
+    const id = parseInt(formData.id); //预约编号
     let resultData = await studentModel.saveFiles(filePath, id);
     return resultData;
   }

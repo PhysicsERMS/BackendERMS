@@ -15,13 +15,18 @@ CREATE OR REPLACE VIEW teacher (id, nick, name, office, phone, email, createTime
 SELECT t.id, t.nick, t.name, t.office, t.phone, t.email, t.create_time, t.modified_time 
 FROM erms_teacher t;
 
+-- 管理员列表视图
+/* CREATE OR REPLACE VIEW admin (id, name, phone, email, createTime, modifiedTime) AS
+SELECT a.id, a.name, a.phone, a.email, a.create_time, a.modified_time
+FROM erms_admin a; */
+
 -- 通知列表视图
 CREATE OR REPLACE VIEW notice (id, title, content, createTime, modifiedTime, teacherName) AS
 SELECT n.id, n.title, n.content, n.create_time, n.modified_time, t.name 
 FROM erms_notice n, erms_teacher t 
 WHERE n.teacher_id = t.id;
 
--- 学生预约实验视图name, classRoom, teacherName, 
+-- 学生预约实验视图
 CREATE OR REPLACE VIEW subExper (id, studentId, studentName, experimenId, classTime, preStatus,
 status, preScore, score, operateScore, downloadUrl, viewUrl, createTime,
 modifiedTime, experimentName, classRoom, teacherId) AS
@@ -46,7 +51,7 @@ CREATE OR REPLACE VIEW student_sub (id, num, name, college, class, phone,
 email, experimentId, classTime, preStatus, status,
 preScore, score, operateScore, downloadUrl, viewUrl, createTime,
 modifiedTime) AS
-SELECT s.id, s.number, s.name, s.college, s.class, s.phone, s.email,
+SELECT su.id, s.number, s.name, s.college, s.class, s.phone, s.email,
 su.experiment_id, su.class_time, su.pre_status, su.status,
 su.pre_score, su.score, su.operate_score, su.download_url, 
 su.view_url, su.create_time, su.modified_time

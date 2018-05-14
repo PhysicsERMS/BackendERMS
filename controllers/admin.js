@@ -23,22 +23,25 @@ module.exports = {
       if ( formData.name === userResult.name ) {
         result.msg = MSG.SUCCESS;
         result.code = 200;
+        result.data = {
+          id: userResult.id,
+          name: userResult.name,
+          phone: userResult.phone,
+          email: userResult.email,
+        };
       } else {
         result.msg = MSG.USER_NAME_OR_PASSWORD_ERROR;
       }
     } else {
-      result.msg = MSG.USER_NO_EXIST;
+      result.msg = MSG.USER_NAME_OR_PASSWORD_ERROR;
     }
-
-    if ( formData.source === 'form' && result.code === 200 ) {
+    if (result.code === 200 ) {
       let session = ctx.session;
       session.isLogin = true;
       session.userName = userResult.name;
       session.userId = userResult.id;
-      ctx.redirect('/admin/home');
-    } else {
-      ctx.body = result;
-    }
+    } 
+    ctx.body = result;
   },
 
   /**
