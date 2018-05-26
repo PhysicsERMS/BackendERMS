@@ -16,13 +16,13 @@ SELECT t.id, t.nick, t.name, t.office, t.phone, t.email, t.create_time, t.modifi
 FROM erms_teacher t;
 
 -- 管理员列表视图
-/* CREATE OR REPLACE VIEW admin (id, name, phone, email, createTime, modifiedTime) AS
+CREATE OR REPLACE VIEW admin (id, name, phone, email, createTime, modifiedTime) AS
 SELECT a.id, a.name, a.phone, a.email, a.create_time, a.modified_time
-FROM erms_admin a; */
+FROM erms_admin a;
 
 -- 通知列表视图
-CREATE OR REPLACE VIEW notice (id, title, content, createTime, modifiedTime, teacherName) AS
-SELECT n.id, n.title, n.content, n.create_time, n.modified_time, t.name 
+CREATE OR REPLACE VIEW notice (id, title, content, createTime, modifiedTime, teacherId, teacherName) AS
+SELECT n.id, n.title, n.content, n.create_time, n.modified_time, t.id, t.name 
 FROM erms_notice n, erms_teacher t 
 WHERE n.teacher_id = t.id;
 

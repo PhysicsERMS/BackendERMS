@@ -14,8 +14,8 @@ const data = Mock.mock({
     'experiment_id|0-9': 0,
     'student_id|0-29':0,
     'class_time':/0[1-18]0[1-5]0708/,
-    'pre_status|0-1': 0,
-    'status|0-2': 0,
+    'pre_status|': 0,
+    'status': 0,
     'download_url': '',
     'view_url': ''
   }],
