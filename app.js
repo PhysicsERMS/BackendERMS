@@ -15,6 +15,7 @@ const app = new Koa();
 
 // error handler
 onerror(app);
+app.use(cors());
 
 
 // 存放sessionId的cookie配置
@@ -57,7 +58,6 @@ app.use(session({
 app.use(koaBody({ multipart: true }));
 app.use(json());
 app.use(logger());
-app.use(cors());
 app.use(server(__dirname + '/public/', { extensions: ['pdf']}));
 
 // 初始化路由中间件
